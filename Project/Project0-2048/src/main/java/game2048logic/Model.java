@@ -84,7 +84,13 @@ public class Model {
      *  Empty spaces are stored as null.
      * */
     public boolean emptySpaceExists() {
-        // TODO: Task 2. Fill in this function.
+        for (int y = 0; y < size(); y++) {
+            for (int x = 0; x < size(); x++) {
+                if (tile(x, y) == null) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -94,7 +100,17 @@ public class Model {
      * given a Tile object t, we get its value with t.value().
      */
     public boolean maxTileExists() {
-        // TODO: Task 3. Fill in this function.
+        for (int y = 0; y < size(); y++) {
+            for (int x = 0; x < size(); x++) {
+                if (tile(x, y) == null) {
+                    continue;
+                }
+
+                if (tile(x, y).value() == MAX_PIECE) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -105,7 +121,20 @@ public class Model {
      * 2. There are two adjacent tiles with the same value.
      */
     public boolean atLeastOneMoveExists() {
-        // TODO: Fill in this function.
+        if (emptySpaceExists()) {
+            return true;
+        }
+
+        for (int y = 0; y < size(); y++) {
+            for (int x = 0; x < size(); x++) {
+                if (x < size() - 1 && tile(x, y).value() == tile(x + 1, y).value()) {
+                    return true;
+                }
+                if (y < size() - 1 && tile(x, y).value() == tile(x, y + 1).value()) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -125,10 +154,28 @@ public class Model {
      */
     public void moveTileUpAsFarAsPossible(int x, int y) {
         Tile currTile = board.tile(x, y);
-        int myValue = currTile.value();
-        int targetY = y;
 
-        // TODO: Tasks 5, 6, and 10. Fill in this function.
+        if (y == size() - 1) {
+            return;
+        }
+
+        int targetY = y + 1;
+        while (targetY < size() && tile(x, targetY) == null) {
+            targetY++;
+        }
+
+        targetY--;
+
+        if (targetY >= 0 && targetY < size() - 1 &&
+                tile(x, targetY + 1) != null &&
+                tile(x, targetY + 1).value() == currTile.value() &&
+                !tile(x, targetY + 1).wasMerged()) {
+            board.move(x, targetY + 1, currTile);
+            score = 2 * currTile.value();
+        }
+        else if (targetY != y) {
+            board.move(x, targetY, currTile);
+        }
     }
 
     /** Handles the movements of the tilt in column x of the board

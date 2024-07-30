@@ -186,8 +186,7 @@ public class Model {
         for (int y = size() - 2; y >= 0; y--) {
             if (tile(x, y) == null) {
                 continue;
-            }
-            else {
+            } else {
                 moveTileUpAsFarAsPossible(x, y);
             }
         }

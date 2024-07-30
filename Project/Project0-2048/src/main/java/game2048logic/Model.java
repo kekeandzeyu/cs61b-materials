@@ -184,9 +184,7 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         for (int y = size() - 2; y >= 0; y--) {
-            if (tile(x, y) == null) {
-                continue;
-            } else {
+            if (tile(x, y) != null) {
                 moveTileUpAsFarAsPossible(x, y);
             }
         }

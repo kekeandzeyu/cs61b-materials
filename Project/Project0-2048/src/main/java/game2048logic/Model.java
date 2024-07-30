@@ -166,14 +166,13 @@ public class Model {
 
         targetY--;
 
-        if (targetY >= 0 && targetY < size() - 1 &&
-                tile(x, targetY + 1) != null &&
-                tile(x, targetY + 1).value() == currTile.value() &&
-                !tile(x, targetY + 1).wasMerged()) {
+        if (targetY >= 0 && targetY < size() - 1
+                && tile(x, targetY + 1) != null
+                && tile(x, targetY + 1).value() == currTile.value()
+                && !tile(x, targetY + 1).wasMerged()) {
             board.move(x, targetY + 1, currTile);
             score += 2 * currTile.value();
-        }
-        else if (targetY != y) {
+        } else if (targetY != y) {
             board.move(x, targetY, currTile);
         }
     }

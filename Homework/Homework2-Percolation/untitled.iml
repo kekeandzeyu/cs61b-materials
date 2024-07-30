@@ -10,12 +10,14 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/include/algs4.jar!/" />
+          <root url="file://$MODULE_DIR$/include" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="jar://$MODULE_DIR$/include/algs4.jar!/" />
+          <root url="file://$MODULE_DIR$/include" />
         </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/include" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/include" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>
